@@ -1,0 +1,22 @@
+development:
+  adapter: postgresql
+  database: knapsack_development
+  pool: 5
+  username: metzbr1
+  host: localhost 
+ 
+test:
+  adapter: postgresql
+  database: knapsack_test
+  pool: 5
+  username: metzbr1
+  host:  localhost
+ 
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: knapsackproduction
+  username: knapsackproduction
+  password: bedminster
+  host: knapsackproduction.ccpoyzezuqrd.us-east-1.rds.amazonaws.com
+  port: 5432

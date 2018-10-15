@@ -1,0 +1,8 @@
+<div class="container main">
+	<h1>MY HOBBY:</h1>
+	<h4>EMBEDDING NP-COMPLETE PROBLEMS IN RESTRAUNT ORDERS</h4>
+	<%= form_tag import_pages_path, multipart: true do %>
+	  <label for="file", class="btn btn-primary">File<%= file_field_tag "file" %></label>
+	  <%= submit_tag "Import" %>
+	<% end %>
+</div>

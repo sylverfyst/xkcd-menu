@@ -1,0 +1,15 @@
+<div class="container main">
+	<div class="menu">
+		<h1 class="menu-title">CHOTCHKIES RESTRAUNT</h1>
+		<h2 class="menu-subtitle">APPETIZERS</h2>
+		<ul>
+			<% if @output.is_a? Array %>
+				<% @output.each do |output| %>
+					<li><%= output %></li>
+				<% end %>
+			<% else %>
+				<li><%= @output %></li>
+			<% end %>
+		</ul>
+	</div>
+</div>
