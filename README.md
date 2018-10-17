@@ -9,13 +9,13 @@ find the combination of items costs' that equals the target price.
 
 To deploy locally, make sure to edit the database.yml file to change the username to match your own.  
 
-###Ruby Version
+### Ruby Version
 `2.4.1`
 
-###Rails Version
+### Rails Version
 `5.2`
 
-##Run: 
+## Run: 
 
 ```
 gem install bundle
