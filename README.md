@@ -1,9 +1,11 @@
 # XKCD 287 NP-Complete Appetizer Problem
 
-##Given a text file with the format of
+## Given a text file with the format of
 
+```
 Order Target Price
 item name,item cost$
+```
 
 find the combination of items costs' that equals the target price.
 
@@ -28,5 +30,3 @@ puma
 ```
 
 navigate to localhost:3000 in your browser
-
-* ...
