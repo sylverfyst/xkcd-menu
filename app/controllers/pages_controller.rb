@@ -3,9 +3,14 @@ class PagesController < ApplicationController
 	end
 
 	def order
-		@output = Result.all.pluck(:order)
-		if @output == []
+		@results = Result.all.pluck(:order)
+		@output = []
+		if @results == []
 			@output = "There are no viable solutions"
+		else
+			Result.all.each do | o|
+				@output.push(o.fancy_result)
+			end
 		end
 	end
 

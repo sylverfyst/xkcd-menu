@@ -5,7 +5,13 @@
 		<ul>
 			<% if @output.is_a? Array %>
 				<% @output.each do |output| %>
-					<li><%= output %></li>
+					<li>
+						<% output.each do |o| %>
+							<p class="item-name"><%= o["name"] %> x <%= o["count"] %></p>
+							<p class="item-cost">Per Item Cost: <%= o["cost"] %></p>
+						<% end %>
+					</li>
+					<hr/>
 				<% end %>
 			<% else %>
 				<li><%= @output %></li>
