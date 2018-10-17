@@ -1,7 +1,23 @@
-<div class="container main">
-	<div class="menu">
+<div class="container-fluid">
+	<div class="jumbotron main_header">
+	    <div class="left-jumbotron">
+	    	<ul>
+	    		<li>Archive</li>
+	    		<li>What If?</li>
+	    		<li>Blag</li>
+	    		<li>Store</li>
+	    		<li>About</li>
+	    	</ul>
+	    </div>
+	    <div class="right-jumbotron">
+	    	<%= image_tag src="xkcd.png" %>
+	    	<p>A Developer of sarcasm, math, and language.</p>
+	    	<p>Bryan Updates Everyday</p>
+    	</div>
+	</div>
+	<div class="container menu">
 		<h1 class="menu-title">CHOTCHKIES RESTRAUNT</h1>
-		<h2 class="menu-subtitle">APPETIZERS</h2>
+		<h2 class="menu-subtitle">POSSIBLE ORDERS</h2>
 		<ul>
 			<% if @output.is_a? Array %>
 				<% @output.each do |output| %>
@@ -17,5 +33,7 @@
 				<li><%= @output %></li>
 			<% end %>
 		</ul>
+
+		<%= link_to "New Order", root_path, class: "btn btn-primary" %>
 	</div>
 </div>

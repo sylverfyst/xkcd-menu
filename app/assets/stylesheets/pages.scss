@@ -16,14 +16,55 @@ html, body {
 .container-fluid {
 	height: 100%;
 }
-.main {
+.main, .menu {
 	width: 60%;
-	background-color: #fafafa;
     border: 2px solid #000;
     border-radius: 5px;
     min-height: 100%;
     height: 100%;
+
+    hr {
+		width: 80%;
+	}
+
+	ul {
+		list-style-type: none;
+		padding: 0;
+	}
+
+    h1, h4 {
+    	text-align: center;
+    }
+
+    img {
+    	max-width: 80%;
+    	margin: 16px 10%;
+    }
+
+    form {
+    	padding-left: 10%;
+    }
 }
+
+.main {
+	background-color: #fafafa;
+}
+.menu {
+	background-color: #edac97;
+	text-align: center; 
+
+	.menu-title {
+		width: 40%;
+		margin: 8px auto;
+		background-color: #eeecdb;
+		border: 1px solid #000;
+	}
+	.item-name {
+		font-weight:bold;
+		font-size: 18px;
+	}
+}
+
 .main_header {
 	display: flex;
 	background-color: #96A8C8;
@@ -40,6 +81,8 @@ html, body {
 		border-radius: 5px;
 
 		ul {
+			text-align: left;
+			padding-left: 35%;
 			font-size: 21px;
     		font-weight: 800;
 			list-style-type: none;	
@@ -52,21 +95,5 @@ html, body {
 
 	.right-jumbotron {
 		margin-left: 4px;
-	}
-	
-	
-}
-.menu {
-	background-color: #edac97;
-}
-.menu-title {
-	width: 40%;
-	margin: 0 auto;
-	text-align: center;
-	background-color: #eeecdb;
-	border: 1px solid #000;
-}
-.item-name {
-	font-weight:bold;
-	font-size: 18px;
+	}	
 }

@@ -9,9 +9,9 @@ class Item < ApplicationRecord
 		File.open(file, "r").each_line do |line|
 			data = line.gsub(/\n/, "").split(/,/)
 			if data.length == 1 
-				Order.create(value: data[0].gsub(/\$/,'').to_f)
+				Order.create(value: data[0].gsub(/[^\.0-9]/,'').to_f)
 			else
-				Item.create(name: data[0], cost: data[1].gsub(/\$/,'').to_f)
+				Item.create(name: data[0], cost: data[1].gsub(/[^\.0-9]/,'').to_f)
 			end
 		end
 	end
