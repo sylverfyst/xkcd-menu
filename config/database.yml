@@ -15,8 +15,8 @@ test:
 production:
   adapter: postgresql
   encoding: utf8
-  database: knapsackproduction
-  username: knapsackproduction
-  password: bedminster
-  host: knapsackproduction.ccpoyzezuqrd.us-east-1.rds.amazonaws.com
+  database: menudb
+  username: bmetzger
+  password: rufio123
+  host: menudb.cctul6uu1y0k.us-west-2.rds.amazonaws.com
   port: 5432
