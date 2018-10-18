@@ -1,24 +1,32 @@
-# README
+# XKCD 287 NP-Complete Appetizer Problem
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Given a text file with the format of
 
-Things you may want to cover:
+```
+Order Target Price
+item name,item cost$
+```
 
-* Ruby version
+find the combination of items costs' that equals the target price.
 
-* System dependencies
+To deploy locally, make sure to edit the database.yml file to change the username to match your own.  
 
-* Configuration
+### Ruby Version
+`2.4.1`
 
-* Database creation
+### Rails Version
+`5.2`
 
-* Database initialization
+## Run: 
 
-* How to run the test suite
+```
+gem install bundle
+bundle install
 
-* Services (job queues, cache servers, search engines, etc.)
+rails db:create
+rails db:migrate
 
-* Deployment instructions
+puma
+```
 
-* ...
+navigate to localhost:3000 in your browser
