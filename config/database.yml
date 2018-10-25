@@ -2,14 +2,14 @@ development:
   adapter: postgresql
   database: knapsack_development
   pool: 5
-  username: metzbr1
+  username: bmetzger
   host: localhost 
  
 test:
   adapter: postgresql
   database: knapsack_test
   pool: 5
-  username: metzbr1
+  username: bmetzger
   host:  localhost
  
 production:

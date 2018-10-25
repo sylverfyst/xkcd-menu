@@ -16,7 +16,7 @@ class PagesController < ApplicationController
 
 	def import
 		Item.delete_and_import(params[:file].path)
-    	Item.knapsack([])
+    	Item.knapsack({names: [], costs: []})
     	redirect_to order_pages_path
 	end
 	

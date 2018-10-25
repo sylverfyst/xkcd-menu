@@ -7,7 +7,7 @@
 				<li>
 					<% output.each do |o| %>
 						<p class="item-name"><%= o["name"] %> x <%= o["count"] %></p>
-						<p class="item-cost">Per Item Cost: <%= o["cost"] %></p>
+						<p class="item-cost">Per Item Cost: $<%= "%.2f" % o["cost"] %></p>
 					<% end %>
 				</li>
 				<hr/>

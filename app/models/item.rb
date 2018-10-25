@@ -17,15 +17,24 @@ class Item < ApplicationRecord
 	end
 
 	def self.knapsack(order)
-		item_costs = Item.all.pluck(:cost)
-		total = order.reduce(0, :+)
-		item_costs.each do |c|
-			if ( ( total + c ) == Order.first[:value] )
-				temp = order + [c]
-				temp.sort!
-				Result.where(order: ( temp ) ).first_or_create
-			elsif ( ( total + c ) < Order.first[:value] )
-				knapsack( order + [c] )
+		items = Item.all.pluck(:name, :cost)
+		total = order[:costs].reduce(0, :+)
+
+		items.each do |item|
+			temp = {
+				names: ( order[:names] + [ item[0] ] ).sort!, 
+				costs: ( order[:costs] + [ item[1] ] ).sort!, 
+				total: total + item[1]
+			}
+			if ( temp[:total] == Order.first[:value] ) 
+				Result.where( names: temp[:names], order: temp[:costs] ).first_or_create
+			elsif ( temp[:total] < Order.first[:value] )
+				knapsack( 
+					{ 
+						names: temp[:names], 
+						costs: temp[:costs] 
+					} 
+				)
 			end
 		end
 	end
