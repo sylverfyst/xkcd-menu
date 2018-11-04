@@ -1,17 +1,19 @@
 class Item < ApplicationRecord
 	require 'pry'
+	require 'bigdecimal'
+	require 'bigdecimal/util'
 	
 	def self.delete_and_import(file)
-		Item.all.destroy_all
-		Order.all.destroy_all
-		Result.all.destroy_all
+		Item.destroy_all
+		Order.destroy_all
+		Result.destroy_all
 
 		File.open(file, "r").each_line do |line|
 			data = line.gsub(/\n/, "").split(/,/)
 			if data.length == 1 
-				Order.create(value: data[0].gsub(/[^\.0-9]/,'').to_f)
+				Order.create(value: data[0].gsub(/[^\.0-9]/,'').to_d)
 			else
-				Item.create(name: data[0], cost: data[1].gsub(/[^\.0-9]/,'').to_f)
+				Item.create(name: data[0], cost: data[1].gsub(/[^\.0-9]/,'').to_d)
 			end
 		end
 	end
