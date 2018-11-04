@@ -30,3 +30,12 @@ puma
 ```
 
 navigate to localhost:3000 in your browser
+
+## To Do:
+[x] Create Methods that accurately solve the problem 
+[x] Create Views to allow interactivity for reusability
+[x] Deploy initial application to AWS for sharing
+[] Create Test Suite to verify that the application is working as expected
+[] Create Pipeline to allow CI/CD between GitHub and AWS
+[] Clean Up SCSS to be more generic / reusable
+[] Refactor code as needed
