@@ -18,10 +18,11 @@ RSpec.describe Item, type: :model do
 	end
 
 	describe "#delete_and_import" do
-		let(:item){ create(:item, name: "Bagel") }
+		let(:item){ create(:item, name: "Bagel", cost: 3.80) }
 		let(:item_2){ create(:item, name: "French Fries") }
+		let(:item_3){ create(:item) }
 		let(:order){ create(:order) }
-		let(:result){ create(:result, names: [ "Bagel", "French Fries", "Bagel" ]) }
+		let(:result){ create(:result, names: [ "Pizza", "French Fries", "Pizza" ]) }
 
 		it "destroys all items" do 
 			expect {
@@ -41,10 +42,25 @@ RSpec.describe Item, type: :model do
 			}.to change{ Result.exists?(result.id) }.to false
 		end
 
-		it "reads the txt file"
-		it "stores the data and splits into lines"
-		it "checks for the order in the first line"
-		it "validates order"
-		it "creates the items from the rest of the file"
+		it "creates the order" do
+			Item.delete_and_import("tmp/menu.txt")
+
+			expect(Order.first.attributes[:value]).to eq(order.attributes[:value])
+		end
+		it "creates the menu items" do
+			Item.delete_and_import("tmp/menu.txt")
+
+			expect(Item.find_by(name: "Apple").cost).not_to eq(item.cost)
+		end
+	end
+
+	describe "#knapsack" do 
+
+		it "handles the original problem" do
+			Item.delete_and_import("tmp/standard.txt")
+			Item.knapsack({names: [], costs: []})
+
+			expect(Result.first[:names]).to eq(["mixed fruit", "mixed fruit", "mixed fruit", "mixed fruit", "mixed fruit", "mixed fruit", "mixed fruit"])
+		end
 	end
 end
