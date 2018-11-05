@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
 	validates_presence_of :name, :cost
-	require 'pry'
 	require 'bigdecimal'
 	require 'bigdecimal/util'
 	

@@ -17,7 +17,7 @@ RSpec.describe Item, type: :model do
 		expect(subject).to_not be_valid
 	end
 
-	describe "#delete_and_import" do
+	describe ".delete_and_import" do
 		let(:item){ create(:item, name: "Bagel", cost: 3.80) }
 		let(:item_2){ create(:item, name: "French Fries") }
 		let(:item_3){ create(:item) }
@@ -54,7 +54,7 @@ RSpec.describe Item, type: :model do
 		end
 	end
 
-	describe "#knapsack" do 
+	describe ".knapsack" do 
 
 		it "handles the original problem" do
 			Item.delete_and_import("tmp/standard.txt")
