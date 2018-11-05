@@ -18,32 +18,30 @@ RSpec.describe Item, type: :model do
 	end
 
 	describe "#delete_and_import" do
-		before(:each) do
-			item = create(:item)
-			item_2 = create(:item, name: "French Fries")
-			order = create(:order)
-			result = create(:result, names: [ "Pizza", "French Fries", "Pizza" ])
-		end
+		let(:item){ create(:item, name: "Bagel") }
+		let(:item_2){ create(:item, name: "French Fries") }
+		let(:order){ create(:order) }
+		let(:result){ create(:result, names: [ "Bagel", "French Fries", "Bagel" ]) }
 
 		it "destroys all items" do 
 			expect {
-				Item.delete_and_import
-			}.to change{ Item.any? }.to false
+				Item.delete_and_import("tmp/menu.txt")
+			}.to change{ Item.exists?(item.id) && Item.exists?(item_2.id) }.to false
 		end
 
 		it "destroys all orders" do 
 			expect {
-				Order.delete_and_import
-			}.to change{ Order.any? }.to false
+				Item.delete_and_import("tmp/menu.txt")
+			}.to change{ Order.exists?(order.id) }.to false
 		end
 
 		it "destroys all results" do 
 			expect {
-				Result.delete_and_import
-			}.to change{ Result.any? }.to false
+				Item.delete_and_import("tmp/menu.txt")
+			}.to change{ Result.exists?(result.id) }.to false
 		end
 
-		it "reads the csv file"
+		it "reads the txt file"
 		it "stores the data and splits into lines"
 		it "checks for the order in the first line"
 		it "validates order"
