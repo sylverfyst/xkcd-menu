@@ -17,6 +17,6 @@ production:
   encoding: utf8
   database: menudb
   username: bmetzger
-  password: rufio123
+  password: <%= ENV['POSTGRESQL_PASSWORD'] %>
   host: menudb.cctul6uu1y0k.us-west-2.rds.amazonaws.com
   port: 5432
