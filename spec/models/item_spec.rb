@@ -58,9 +58,23 @@ RSpec.describe Item, type: :model do
 
 		it "handles the original problem" do
 			Item.delete_and_import("tmp/standard.txt")
-			Item.knapsack({names: [], costs: []})
+			Item.knapsack({ names: [], costs: [] })
 
 			expect(Result.first[:names]).to eq(["mixed fruit", "mixed fruit", "mixed fruit", "mixed fruit", "mixed fruit", "mixed fruit", "mixed fruit"])
+		end
+
+		it "handles if items have same cost" do
+			Item.delete_and_import("tmp/menu.txt")
+			Item.knapsack({ names: [], costs: [] })
+
+			expect(Result.all.count).to eq(4)
+		end
+
+		it "handles if there is no solution" do
+			Item.delete_and_import("tmp/nosolution.txt")
+			Item.knapsack({ names: [], costs: [] })
+
+			expect(Result.all.count).to eq(0)
 		end
 	end
 end
