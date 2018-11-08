@@ -3,43 +3,50 @@ require 'bigdecimal'
 require 'bigdecimal/util'
 
 RSpec.describe Result, type: :model do
+	subject { create(:result) }
+
+	it "is valid with valid attributes" do 
+		expect(subject).to be_valid
+	end
+
+	it "is not valid without a order" do 
+		subject.order = nil
+		expect(subject).to_not be_valid
+	end
+
+	it "is not valid without names" do 
+		subject.names = nil
+		expect(subject).to_not be_valid
+	end
+
 	describe "#fancy_result" do
-		
-		it "checks for items" do
-			item = create(:item)
-			order = create(:order)
-			result = create(:result)
-			type = result.names[0].to_s
-			temp_item = Item.where(name: type).last
 
-			expect(temp_item.attributes).to eq(Item.find_by(name: "Pizza").attributes)
+		it "pretty prints the order with no solution" do
+			Item.delete_and_import("tmp/nosolution.txt")
+			Item.knapsack({ names: [], costs: [] })
+			fancy = Result.first
+			if fancy
+				fancy = fancy.fancy_result
+			else
+				fancy = nil
+			end
+			expect(fancy).to eq(nil)
 		end
 
-		it "checks for different types of menu items" do
-			item = create(:item)
-			order = create(:order)
-			result = create(:result)
-			expect(result.names.uniq).to eq(["Pizza"])
+		it "pretty prints the original menu from the comic" do
+			Item.delete_and_import("tmp/standard.txt")
+			Item.knapsack({ names: [], costs: [] })
+			fancy = Result.first.fancy_result
+
+			expect(fancy).to eq([{"id" => nil, "name" => "mixed fruit", "cost" =>  0.215e1.to_d, "count" => 7}])
 		end
 
-		it "gets the number of different types in the order and adds them to the item object" do
-			item = create(:item)
-			order = create(:order)
-			result = create(:result)
-			item_object = Item.where(name: result.names[0]).select("name, cost").first.as_json
-			count = result.names.count(result.names[0])
-			item_object["count"] = count
+		it "pretty prints the menu with items that cost the same amount" do
+			Item.delete_and_import("tmp/menu.txt")
+			Item.knapsack({ names: [], costs: [] })
+			fancy = Result.first.fancy_result
 
-			expect(item_object).to eq({"id" => nil, "name" => "Pizza", "cost" => 0.215e1.to_d, "count" => 3})
-		end
-
-		it "pretty prints the order" do
-			item = create(:item)
-			order = create(:order)
-			result = create(:result)
-			fancy = result.fancy_result
-
-			expect(fancy).to eq([{"id" => nil, "name" => "Pizza", "cost" => 0.215e1.to_d, "count" => 3}])
+			expect(fancy).to eq([{"id" => nil, "name" => "Pizza", "cost" =>  0.215e1.to_d, "count" => 3}])
 		end
 	end
 end

@@ -1,4 +1,5 @@
 class Result < ApplicationRecord
+	validates_presence_of :order, :names 
 	def fancy_result
 		items = []
 		types = self.names.uniq
