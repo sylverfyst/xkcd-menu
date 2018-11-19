@@ -15,13 +15,15 @@ gem 'bootstrap-sass'
 gem 'pry'
 gem 'jquery-rails'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem "loofah", ">= 2.2.3"
+gem 'loofah', '>= 2.2.3'
+gem 'rack', '>= 2.0.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'database_cleaner'
+  gem 'simplecov', require: false
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
